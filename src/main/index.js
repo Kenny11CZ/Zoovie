@@ -1,4 +1,6 @@
-import {app, BrowserWindow, ipcMain} from 'electron'
+import {app, BrowserWindow, ipcMain, dialog} from 'electron'
+const { autoUpdater } = require('electron-updater')
+
 import path from 'path';
 
 import {rootPath} from './utils.js'
@@ -19,7 +21,6 @@ if (process.env.NODE_ENV !== 'development') {
     global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
-
 let mainWindow;
 
 
@@ -27,6 +28,10 @@ let mainWindow;
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
+
+
+let updater
+autoUpdater.autoDownload = false
 
 function createWindow() {
     /**
@@ -56,6 +61,28 @@ function createWindow() {
         app.quit();
     })
 }
+
+autoUpdater.on('error', (event, error) => {
+    dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+})
+
+autoUpdater.on('update-available', () => {
+    dialog.showMessageBox({
+        type: 'info',
+        title: 'Found Updates',
+        message: 'Found updates, do you want update now?',
+        buttons: ['Sure', 'No']
+    }, (buttonIndex) => {
+        if (buttonIndex === 0) {
+            autoUpdater.downloadUpdate()
+        }
+        else {
+            updater.enabled = true
+            updater = null
+        }
+    })
+})
+
 
 app.on('window-all-closed', () => {
     app.quit()
