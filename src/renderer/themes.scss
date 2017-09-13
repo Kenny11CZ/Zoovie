@@ -1,0 +1,47 @@
+@if($style == 'space') {
+  $brand-primary: #b10dc9;
+  body {
+    background-image: url("~@/assets/nebula.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .navbar {
+    background: #001f3f;
+    background: -webkit-linear-gradient(45deg, #b10dc9 0%, #001f3f 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b10dc9', endColorstr='#001f3f', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+  }
+}
+
+@if($style == 'gay') {
+  $brand-primary: #F012BE;
+  body {
+    background-image: url("~@/assets/gay.gif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  .navbar {
+    background: #F012BE;
+    background: -webkit-linear-gradient(45deg, #F012BE 0%, #b10dc9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b10dc9', endColorstr='#001f3f', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+  }
+}
+
+@if($style == 'dark') {
+  $brand-primary: #0074D9;
+  body {
+    background-color: #001F3F !important;
+  }
+  .navbar {
+    background: #F012BE;
+    background: -webkit-linear-gradient(45deg, #0074D9 0%, #001F3F 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b10dc9', endColorstr='#001f3f', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.4em;
+    background-color: #00396D !important;
+    outline: 1px solid #00417D !important;
+  }
+}

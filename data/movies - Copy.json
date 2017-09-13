@@ -1,0 +1,38 @@
+[
+  {
+    "name": "1",
+    "file": "C:\\Users\\Kenny\\Pictures\\meh\\červená\\2OWZl1k.jpg",
+    "image": "C:/Users/Kenny/Pictures/meh/červená/2OWZl1k.jpg",
+    "favourite": false,
+    "date": 1502467672879,
+    "order": 1,
+    "title": ""
+  },
+  {
+    "name": "1",
+    "file": "C:\\Users\\Kenny\\Pictures\\meh\\červená\\5PLC4ZH.jpg",
+    "image": "C:/Users/Kenny/Pictures/meh/červená/5PLC4ZH.jpg",
+    "favourite": false,
+    "date": 1502467708676,
+    "order": 2,
+    "title": ""
+  },
+  {
+    "name": "a",
+    "file": "C:\\Users\\Kenny\\Pictures\\meh\\červená\\13260779_1552359831733922_539498595_n.jpg",
+    "favourite": false,
+    "image": "static/default.jpg",
+    "date": 1502327922370,
+    "order": 0,
+    "title": ""
+  },
+  {
+    "name": "asd",
+    "title": "aaaa",
+    "order": 0,
+    "file": "C:\\Users\\Kenny\\Pictures\\meh\\červená\\8Oq0G05.jpg",
+    "favourite": false,
+    "image": "static/default.jpg",
+    "date": 1504877757570
+  }
+]

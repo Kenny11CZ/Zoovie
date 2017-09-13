@@ -1,0 +1,67 @@
+$style: 'dark';
+
+$enable-rounded: false;
+
+@import "themes";
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, html {
+  height: 100%;
+  overflow: hidden;
+}
+
+$toolbar-height: 38px;
+
+.toolbar-offset {
+  padding-top: $toolbar-height;
+}
+
+body {
+  font-family: "Roboto", Arial;
+}
+
+@import "~bootstrap/scss/bootstrap";
+
+.navbar {
+  position: fixed;
+  z-index: 100000;
+  padding: 0;
+}
+
+.not-selectable {
+  -webkit-user-select: none !important;
+}
+
+::-webkit-scrollbar {
+  width: 0.8em;
+  position: absolute;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  position: absolute;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  position: absolute;
+}
+
+//@import "~bootstrap/scss/bootstrap";
