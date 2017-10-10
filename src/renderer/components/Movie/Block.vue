@@ -34,7 +34,7 @@
         props: ['movie', 'index', 'isPreview'],
         methods: {
             fav: function () {
-                console.log(this.movie.image);
+                console.log(this.movie);
                 this.$store.commit('toggleFavourite', this.index);
             },
             del: function () {

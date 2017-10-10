@@ -11,7 +11,7 @@
             <div class="scrollbar-fix h-100">
                 <block v-for="(movie, index) in filteredMovies"
                        v-bind:movie="movie"
-                       v-bind:index="index"
+                       v-bind:index="filteredIndex(movie)"
                        v-on:open="run(movie.file)"></block>
             </div>
         </div>
@@ -62,6 +62,7 @@
         },
         methods: {
             run: function (file) {
+                console.log("run", file);
                 shell.openItem(file)
             },
             toggleFav() {
@@ -71,6 +72,9 @@
                 let index = sortable.indexOf(this.sorted) + 1;
                 let by = index < sortable.length ? sortable[index] : sortable[0];
                 this.$store.commit('sort', by);
+            },
+            filteredIndex (movie) {
+                return this.movies.indexOf(movie);
             },
             ...mapMutations([
                 'sort'

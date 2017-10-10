@@ -73,7 +73,7 @@ export const mutations = {
         let name = function (a, b) {
             let cmp = a.name.localeCompare(b.name);
             if (cmp == 0) {
-                return a.order > b.order;
+                return parseInt(a.order) > parseInt(b.order);
             }
             return cmp;
         };
@@ -90,6 +90,9 @@ export const mutations = {
         } else {
             state.movies.sort(date);
         }
+        // for(let i = 0; i < state.movies.length; ++i) {
+        //     console.log(i + ": " + state.movies[i].name + " (" + state.movies[i].order + ")");
+        // }
         save(JSON.stringify(state.movies));
     }
 

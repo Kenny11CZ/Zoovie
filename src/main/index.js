@@ -1,5 +1,4 @@
 import {app, BrowserWindow, ipcMain, dialog} from 'electron'
-const { autoUpdater } = require('electron-updater')
 
 import path from 'path';
 
@@ -24,14 +23,10 @@ if (process.env.NODE_ENV !== 'development') {
 let mainWindow;
 
 
-
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
 
-
-let updater
-autoUpdater.autoDownload = false
 
 function createWindow() {
     /**
@@ -55,33 +50,33 @@ function createWindow() {
     });
 
     mainWindow.loadURL(winURL);
-
+    mainWindow.toggleDevTools();
     mainWindow.on('closed', () => {
         mainWindow = null;
         app.quit();
     })
 }
 
-autoUpdater.on('error', (event, error) => {
-    dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
-})
-
-autoUpdater.on('update-available', () => {
-    dialog.showMessageBox({
-        type: 'info',
-        title: 'Found Updates',
-        message: 'Found updates, do you want update now?',
-        buttons: ['Sure', 'No']
-    }, (buttonIndex) => {
-        if (buttonIndex === 0) {
-            autoUpdater.downloadUpdate()
-        }
-        else {
-            updater.enabled = true
-            updater = null
-        }
-    })
-})
+// autoUpdater.on('error', (event, error) => {
+//     dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+// })
+//
+// autoUpdater.on('update-available', () => {
+//     dialog.showMessageBox({
+//         type: 'info',
+//         title: 'Found Updates',
+//         message: 'Found updates, do you want update now?',
+//         buttons: ['Sure', 'No']
+//     }, (buttonIndex) => {
+//         if (buttonIndex === 0) {
+//             autoUpdater.downloadUpdate()
+//         }
+//         else {
+//             updater.enabled = true
+//             updater = null
+//         }
+//     })
+// })
 
 
 app.on('window-all-closed', () => {
@@ -111,8 +106,8 @@ ipcMain.on('zoovie:lang:request', (event) => {
 ipcMain.on('zoovie:lang:rotate', (event) => {
     let allowedLangs = ['cs', 'en'];
     let pos = allowedLangs.indexOf(config.lang) + 1;
-    if(pos >= allowedLangs.length) {
-       pos = 0;
+    if (pos >= allowedLangs.length) {
+        pos = 0;
     }
     config.lang = allowedLangs[pos];
     saveConfig();
@@ -141,14 +136,22 @@ app.on('activate', () => {
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
 
-/*
- import { autoUpdater } from 'electron-updater'
 
- autoUpdater.on('update-downloaded', () => {
- autoUpdater.quitAndInstall()
- })
+import {autoUpdater} from 'electron-updater'
+// console.log(autoUpdater);
+autoUpdater.on('update-downloaded', () => {
+    autoUpdater.quitAndInstall()
+})
 
- app.on('ready', () => {
- if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
- })
- */
+app.on('ready', () => {
+    if (process.env.NODE_ENV === 'production') {
+        autoUpdater.checkForUpdates()
+    }
+});
+autoUpdater.on('checking-for-update', () => {
+    console.log("update check");
+});
+autoUpdater.on('update-available', () => {
+    console.log("update available");
+})
+
