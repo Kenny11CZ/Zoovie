@@ -50,7 +50,7 @@ function createWindow() {
     });
 
     mainWindow.loadURL(winURL);
-    mainWindow.toggleDevTools();
+    // mainWindow.toggleDevTools();
     mainWindow.on('closed', () => {
         mainWindow = null;
         app.quit();

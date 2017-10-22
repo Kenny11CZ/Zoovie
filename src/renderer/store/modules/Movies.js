@@ -90,9 +90,9 @@ export const mutations = {
         } else {
             state.movies.sort(date);
         }
-        // for(let i = 0; i < state.movies.length; ++i) {
-        //     console.log(i + ": " + state.movies[i].name + " (" + state.movies[i].order + ")");
-        // }
+        for(let i = 0; i < state.movies.length; ++i) {
+            console.log(i + ": " + state.movies[i].name + " (" + state.movies[i].order + ")");
+        }
         save(JSON.stringify(state.movies));
     }
 
